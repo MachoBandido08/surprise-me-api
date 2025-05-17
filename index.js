@@ -38,22 +38,36 @@ app.get('/drinks', (req, res) => {
     });
 });
 
-// GET all drinks depending on ingredients available
+// GET drinks depending of ingredients
 app.get('/drinks/:ingredients', (req, res) => {
     const ingredients = req.params.ingredients.split(",")
     console.log(ingredients)
 
+    // Construct sql request
+    // Initial sql request
+    let sqlRequest = "select * from Drink D join Drink_Ingredient DI on D.id = DI.drink_id where D.id not in (select DI2.drink_id from Drink_Ingredient DI2 where DI2.ingredient";
 
+    // Adding ingredients to sql request
+    for (let i = 0; i < ingredients.length; i++) {
+        if (i === 0) {
+            sqlRequest += " not like '%" + ingredients[i] + "%'";
+            continue;
+        }
+        sqlRequest += " and DI2.ingredient not like '%" + ingredients[i] + "%'";
+    }
 
+    // close the sql request built
+    sqlRequest += ")"
 
-    // db.all('SELECT * FROM Drink', (err, rows) => {
-    //     if (err) {
-    //         console.error(err.message);
-    //         res.status(500).send('Internal server error');
-    //     } else {
-    //         res.send(rows);
-    //     }
-    // });
+    // make the call
+    db.all(sqlRequest, (err, rows) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send('Internal server error');
+        } else {
+            res.send(rows);
+        }
+    });
 });
 
 // Start the server
