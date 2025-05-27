@@ -1,14 +1,15 @@
 import sqlite3 from "sqlite3";
 import express from "express";
+import {regroupIngredientsToDrinkJSON} from "./app/DrinksUtilitaires.js";
 
-const fetchAll = async (db, sql, params) => {
-    return new Promise((resolve, reject) => {
-        db.all(sql, params, (err, rows) => {
-            if (err) reject(err);
-            resolve(rows);
-        });
-    });
-};
+// const fetchAll = async (db, sql, params) => {
+//     return new Promise((resolve, reject) => {
+//         db.all(sql, params, (err, rows) => {
+//             if (err) reject(err);
+//             resolve(rows);
+//         });
+//     });
+// };
 
 // const express = require('express');
 // const sqlite3 = require('sqlite3').verbose();
@@ -65,10 +66,20 @@ app.get('/drinks/:ingredients', (req, res) => {
             console.error(err.message);
             res.status(500).send('Internal server error');
         } else {
+            rows = regroupIngredientsToDrinkJSON(rows);
             res.send(rows);
         }
     });
 });
+
+app.get('/status', (req, res) => {
+    const status = {
+        'Status': 'Running'
+    };
+    res.send(status);
+
+})
+
 
 // Start the server
 app.listen(port, () => {
