@@ -1,5 +1,6 @@
 import sqlite3 from "sqlite3";
 import express from "express";
+import cors from "cors";
 import {regroupIngredientsToDrinkJSON} from "./app/DrinksUtilitaires.js";
 
 // const fetchAll = async (db, sql, params) => {
@@ -25,6 +26,7 @@ const db = new sqlite3.Database('./drinks_database.db', (err) => {
     console.log('Connected to the drinks database.');
 });
 
+app.use(cors());
 app.use(express.json());
 
 // GET all drinks test
