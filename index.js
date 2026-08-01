@@ -43,33 +43,45 @@ app.get('/drinks', (req, res) => {
 
 // GET drinks depending of ingredients
 app.get('/drinks/:ingredients', (req, res) => {
-    const ingredients = req.params.ingredients.split(",")
+    const ingredients = req.params.ingredients
+        .split(",")
+        .map(i => i.trim())
+        .filter(Boolean)
     console.log(ingredients)
 
-    // Construct sql request
-    // Initial sql request
-    let sqlRequest = "select * from Drink D join Drink_Ingredient DI on D.id = DI.drink_id where D.id not in (select DI2.drink_id from Drink_Ingredient DI2 where DI2.ingredient";
-
-    // Adding ingredients to sql request
-    for (let i = 0; i < ingredients.length; i++) {
-        if (i === 0) {
-            sqlRequest += " not like '%" + ingredients[i] + "%'";
-            continue;
-        }
-        sqlRequest += " and DI2.ingredient not like '%" + ingredients[i] + "%'";
+    if (ingredients.length === 0) {
+        return res.send([]);
     }
 
-    // close the sql request built
-    sqlRequest += ")"
+    // Build the request with placeholders so ingredient values can't be
+    // injected into the SQL. Order by drink id so rows for the same drink
+    // arrive contiguously (regroupIngredientsToDrinkJSON relies on that).
+    const conditions = ingredients.map(() => "DI2.ingredient not like ?").join(" and ");
+    const sqlRequest =
+        "select * from Drink D join Drink_Ingredient DI on D.id = DI.drink_id " +
+        "where D.id not in (select DI2.drink_id from Drink_Ingredient DI2 where " +
+        conditions + ") order by D.id";
+    const params = ingredients.map(ing => "%" + ing + "%");
 
     // make the call
-    db.all(sqlRequest, (err, rows) => {
+    db.all(sqlRequest, params, (err, rows) => {
         if (err) {
             console.error(err.message);
             res.status(500).send('Internal server error');
+        } else if (rows.length === 0) {
+            res.send([]);
         } else {
-            rows = regroupIngredientsToDrinkJSON(rows);
-            res.send(rows);
+            const drinks = regroupIngredientsToDrinkJSON(rows);
+            // The dataset contains duplicate drinks (same content, different
+            // id); collapse them so each cocktail appears once.
+            const seen = new Set();
+            const unique = drinks.filter(d => {
+                const signature = d.name + "|" + d.instructions;
+                if (seen.has(signature)) return false;
+                seen.add(signature);
+                return true;
+            });
+            res.send(unique);
         }
     });
 });
