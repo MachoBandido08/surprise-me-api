@@ -53,11 +53,18 @@ app.get('/drinks', asyncHandler(async (req, res) => {
     res.send(rows);
 }));
 
+// How many missing ingredients a partially-makeable drink may still have
+// before we stop showing it, and the cap on how many partials we return.
+const MAX_MISSING = 2;
+const MAX_PARTIAL = 30;
+
 // GET drinks that can be made from the given comma-separated ingredients.
+// Returns drinks the user can fully make first, then close partial matches
+// (missing a couple of ingredients), each annotated with what's missing.
 app.get('/drinks/:ingredients', asyncHandler(async (req, res) => {
     const ingredients = req.params.ingredients
         .split(',')
-        .map(i => i.trim())
+        .map(i => i.trim().toLowerCase())
         .filter(Boolean);
 
     // Validate input before touching the database.
@@ -71,14 +78,14 @@ app.get('/drinks/:ingredients', asyncHandler(async (req, res) => {
         return res.status(400).send({error: 'Ingredient names are too long (max 60 characters).'});
     }
 
-    // Placeholders keep ingredient values out of the SQL text. Order by drink
-    // id so rows for the same drink arrive contiguously, as the regrouping
-    // step relies on that.
-    const conditions = ingredients.map(() => 'DI2.ingredient not like ?').join(' and ');
+    // Candidate drinks: those with at least one ingredient the user has.
+    // Placeholders keep values out of the SQL text; order by drink id so rows
+    // for the same drink arrive contiguously (the regrouping relies on that).
+    const likeClauses = ingredients.map(() => 'ingredient like ?').join(' or ');
     const sql =
         'select * from Drink D join Drink_Ingredient DI on D.id = DI.drink_id ' +
-        'where D.id not in (select DI2.drink_id from Drink_Ingredient DI2 where ' +
-        conditions + ') order by D.id';
+        'where D.id in (select distinct drink_id from Drink_Ingredient where ' +
+        likeClauses + ') order by D.id';
     const params = ingredients.map(ing => '%' + ing + '%');
 
     const rows = await dbAll(sql, params);
@@ -86,17 +93,43 @@ app.get('/drinks/:ingredients', asyncHandler(async (req, res) => {
         return res.send([]);
     }
 
-    const drinks = regroupIngredientsToDrinkJSON(rows);
-    // The dataset contains duplicate drinks (same content, different id);
-    // collapse them so each cocktail appears once.
+    let drinks = regroupIngredientsToDrinkJSON(rows);
+
+    // Collapse duplicate drinks (same content, different id).
     const seen = new Set();
-    const unique = drinks.filter(d => {
+    drinks = drinks.filter(d => {
         const signature = d.name + '|' + d.instructions;
         if (seen.has(signature)) return false;
         seen.add(signature);
         return true;
     });
-    res.send(unique);
+
+    // A drink ingredient counts as owned if one of the user's ingredients
+    // matches it as a whole word — so "gin" matches "Gin" but not "oriGINal"
+    // or "GINger". The SQL LIKE above is a coarse pre-filter; this is precise.
+    const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const termRegexes = ingredients.map(t => new RegExp('\\b' + escapeRegex(t) + '\\b', 'i'));
+    const owns = (name) => termRegexes.some(re => re.test(name || ''));
+
+    for (const d of drinks) {
+        d.missing = d.ingredients.filter(ing => !owns(ing.name)).map(ing => ing.name);
+        d.owned = d.ingredients.length - d.missing.length;
+        d.makeable = d.missing.length === 0;
+    }
+
+    // Drop drinks the user owns nothing of (LIKE pre-filter false positives).
+    drinks = drinks.filter(d => d.owned > 0);
+
+    // Fully makeable first (alphabetical), then the closest partial matches.
+    const makeable = drinks
+        .filter(d => d.makeable)
+        .sort((a, b) => a.name.localeCompare(b.name));
+    const partial = drinks
+        .filter(d => !d.makeable && d.missing.length <= MAX_MISSING)
+        .sort((a, b) => a.missing.length - b.missing.length || a.name.localeCompare(b.name))
+        .slice(0, MAX_PARTIAL);
+
+    res.send([...makeable, ...partial]);
 }));
 
 // --- 404 + error handling ---------------------------------------------------
