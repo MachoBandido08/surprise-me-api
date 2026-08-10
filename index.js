@@ -58,6 +58,34 @@ app.get('/drinks', asyncHandler(async (req, res) => {
 const MAX_MISSING = 2;
 const MAX_PARTIAL = 30;
 
+const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+// "Pantry" staples assumed to be in every kitchen: they never count as
+// "missing" when deciding if a drink is makeable. An ingredient qualifies only
+// if it's essentially just a staple — a core word plus harmless descriptors —
+// so "Lime Juice", "Sea Salt" and "Egg White" pass, but "Tonic Water", "Ice
+// Cream", "Lime Vodka" and "Dr. Pepper" do not. (A pantry staple alone does
+// NOT make a drink relevant — the user must still own a real ingredient.)
+const PANTRY_CORE = new Set(['salt', 'ice', 'water', 'sugar', 'pepper', 'lime', 'limes', 'egg', 'eggs']);
+const PANTRY_DESCRIPTORS = new Set([
+    'sea', 'black', 'white', 'whites', 'kosher', 'table', 'brown', 'powdered',
+    'granulated', 'caster', 'demerara', 'superfine', 'raw', 'crushed', 'cube',
+    'cubes', 'cubed', 'block', 'blocks', 'shaved', 'fresh', 'freshly', 'squeezed',
+    'hot', 'cold', 'warm', 'chilled', 'still', 'juice', 'wedge', 'wedges', 'wheel',
+    'wheels', 'twist', 'peel', 'zest', 'slice', 'sliced', 'half', 'halves',
+    'quarter', 'quartered', 'whole', 'yolk', 'yolks', 'a', 'an', 'of', 'the',
+    'or', 'and', 'for', 'to', 'with', 'on', 'rim', 'optional',
+]);
+const isPantry = (name) => {
+    const tokens = (name || '').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean);
+    let hasCore = false;
+    for (const t of tokens) {
+        if (PANTRY_CORE.has(t)) hasCore = true;
+        else if (!PANTRY_DESCRIPTORS.has(t) && !/^\d+$/.test(t)) return false; // foreign word
+    }
+    return hasCore;
+};
+
 // GET drinks that can be made from the given comma-separated ingredients.
 // Returns drinks the user can fully make first, then close partial matches
 // (missing a couple of ingredients), each annotated with what's missing.
@@ -107,17 +135,25 @@ app.get('/drinks/:ingredients', asyncHandler(async (req, res) => {
     // A drink ingredient counts as owned if one of the user's ingredients
     // matches it as a whole word — so "gin" matches "Gin" but not "oriGINal"
     // or "GINger". The SQL LIKE above is a coarse pre-filter; this is precise.
-    const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const termRegexes = ingredients.map(t => new RegExp('\\b' + escapeRegex(t) + '\\b', 'i'));
-    const owns = (name) => termRegexes.some(re => re.test(name || ''));
+    const userOwns = (name) => termRegexes.some(re => re.test(name || ''));
 
     for (const d of drinks) {
-        d.missing = d.ingredients.filter(ing => !owns(ing.name)).map(ing => ing.name);
-        d.owned = d.ingredients.length - d.missing.length;
+        let owned = 0;
+        d.missing = [];
+        for (const ing of d.ingredients) {
+            if (userOwns(ing.name)) {
+                owned++;              // the user actually listed this
+            } else if (!isPantry(ing.name)) {
+                d.missing.push(ing.name); // real gap (pantry staples are assumed)
+            }
+        }
+        d.owned = owned;
         d.makeable = d.missing.length === 0;
     }
 
-    // Drop drinks the user owns nothing of (LIKE pre-filter false positives).
+    // Keep only drinks the user genuinely owns an ingredient of — a pantry
+    // staple alone (and LIKE pre-filter false positives) don't count.
     drinks = drinks.filter(d => d.owned > 0);
 
     // Fully makeable first (alphabetical), then the closest partial matches.
