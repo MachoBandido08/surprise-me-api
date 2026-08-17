@@ -1,37 +1,15 @@
-import sqlite3 from "sqlite3";
 import express from "express";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
-import {regroupIngredientsToDrinkJSON} from "./app/DrinksUtilitaires.js";
-import {isPantry} from "./app/pantry.js";
+import routes from "./app/routes.js";
+import {closeDb} from "./app/db.js";
+import {config} from "./app/config.js";
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 // Render serves the app behind one proxy; trust it so req.ip is the real
 // client IP (needed to rate limit per user rather than per proxy).
 app.set('trust proxy', 1);
-
-// --- Database ---------------------------------------------------------------
-
-const db = new sqlite3.Database('./drinks_database.db', (err) => {
-    if (err) {
-        console.error('Failed to open database:', err.message);
-        process.exit(1);
-    }
-    console.log('Connected to the drinks database.');
-});
-
-// Promise wrapper so route handlers can use async/await instead of nesting
-// callbacks. Rejections propagate to the central error handler.
-const dbAll = (sql, params = []) =>
-    new Promise((resolve, reject) => {
-        db.all(sql, params, (err, rows) => (err ? reject(err) : resolve(rows)));
-    });
-
-// Wrap async handlers so a rejected promise always reaches the error handler.
-const asyncHandler = (fn) => (req, res, next) =>
-    Promise.resolve(fn(req, res, next)).catch(next);
 
 // --- Middleware -------------------------------------------------------------
 
@@ -48,12 +26,11 @@ app.use((req, res, next) => {
 });
 
 // Rate limit the search endpoints so a single client can't hammer the API.
-// Generous for real use (a search is one request), strict enough to block
-// abuse. /status is left unlimited for health checks.
+// /status is left unlimited for health checks.
 const limiter = rateLimit({
-    windowMs: 60 * 1000,   // 1 minute
-    limit: 60,             // up to 60 requests per minute per IP
-    standardHeaders: true, // send RateLimit-* headers
+    windowMs: config.rateLimit.windowMs,
+    limit: config.rateLimit.limit,
+    standardHeaders: true,
     legacyHeaders: false,
     message: {error: 'Too many requests — please wait a moment and try again.'},
 });
@@ -61,104 +38,7 @@ app.use('/drinks', limiter);
 
 // --- Routes -----------------------------------------------------------------
 
-app.get('/status', (req, res) => {
-    res.send({Status: 'Running'});
-});
-
-// GET all drinks (raw rows) — kept as a simple test/debug endpoint.
-app.get('/drinks', asyncHandler(async (req, res) => {
-    const rows = await dbAll('SELECT * FROM Drink');
-    res.send(rows);
-}));
-
-// How many missing ingredients a partially-makeable drink may still have
-// before we stop showing it, and the cap on how many partials we return.
-const MAX_MISSING = 2;
-const MAX_PARTIAL = 30;
-
-const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-// GET drinks that can be made from the given comma-separated ingredients.
-// Returns drinks the user can fully make first, then close partial matches
-// (missing a couple of ingredients), each annotated with what's missing.
-app.get('/drinks/:ingredients', asyncHandler(async (req, res) => {
-    const ingredients = req.params.ingredients
-        .split(',')
-        .map(i => i.trim().toLowerCase())
-        .filter(Boolean);
-
-    // Validate input before touching the database.
-    if (ingredients.length === 0) {
-        return res.status(400).send({error: 'Provide at least one ingredient.'});
-    }
-    if (ingredients.length > 20) {
-        return res.status(400).send({error: 'Too many ingredients (max 20).'});
-    }
-    if (ingredients.some(i => i.length > 60)) {
-        return res.status(400).send({error: 'Ingredient names are too long (max 60 characters).'});
-    }
-
-    // Candidate drinks: those with at least one ingredient the user has.
-    // Placeholders keep values out of the SQL text; order by drink id so rows
-    // for the same drink arrive contiguously (the regrouping relies on that).
-    const likeClauses = ingredients.map(() => 'ingredient like ?').join(' or ');
-    const sql =
-        'select * from Drink D join Drink_Ingredient DI on D.id = DI.drink_id ' +
-        'where D.id in (select distinct drink_id from Drink_Ingredient where ' +
-        likeClauses + ') order by D.id';
-    const params = ingredients.map(ing => '%' + ing + '%');
-
-    const rows = await dbAll(sql, params);
-    if (rows.length === 0) {
-        return res.send([]);
-    }
-
-    let drinks = regroupIngredientsToDrinkJSON(rows);
-
-    // Collapse duplicate drinks (same content, different id).
-    const seen = new Set();
-    drinks = drinks.filter(d => {
-        const signature = d.name + '|' + d.instructions;
-        if (seen.has(signature)) return false;
-        seen.add(signature);
-        return true;
-    });
-
-    // A drink ingredient counts as owned if one of the user's ingredients
-    // matches it as a whole word — so "gin" matches "Gin" but not "oriGINal"
-    // or "GINger". The SQL LIKE above is a coarse pre-filter; this is precise.
-    const termRegexes = ingredients.map(t => new RegExp('\\b' + escapeRegex(t) + '\\b', 'i'));
-    const userOwns = (name) => termRegexes.some(re => re.test(name || ''));
-
-    for (const d of drinks) {
-        let owned = 0;
-        d.missing = [];
-        for (const ing of d.ingredients) {
-            if (userOwns(ing.name)) {
-                owned++;              // the user actually listed this
-            } else if (!isPantry(ing.name)) {
-                d.missing.push(ing.name); // real gap (pantry staples are assumed)
-            }
-        }
-        d.owned = owned;
-        d.makeable = d.missing.length === 0;
-    }
-
-    // Keep only drinks the user genuinely owns an ingredient of — a pantry
-    // staple alone (and LIKE pre-filter false positives) don't count.
-    drinks = drinks.filter(d => d.owned > 0);
-
-    // Fully makeable first (alphabetical), then the closest partial matches.
-    const makeable = drinks
-        .filter(d => d.makeable)
-        .sort((a, b) => a.name.localeCompare(b.name));
-    const partial = drinks
-        .filter(d => !d.makeable && d.missing.length <= MAX_MISSING)
-        .sort((a, b) => a.missing.length - b.missing.length || a.name.localeCompare(b.name))
-        .slice(0, MAX_PARTIAL);
-
-    res.send([...makeable, ...partial]);
-}));
+app.use('/', routes);
 
 // --- 404 + error handling ---------------------------------------------------
 
@@ -174,18 +54,15 @@ app.use((err, req, res, next) => {
 
 // --- Start + graceful shutdown ----------------------------------------------
 
-const server = app.listen(port, () => {
-    console.log(`Server listening on port ${port}.`);
+const server = app.listen(config.port, () => {
+    console.log(`Server listening on port ${config.port}.`);
 });
 
 const shutdown = (signal) => {
     console.log(`\n${signal} received, shutting down...`);
-    server.close(() => {
-        db.close((err) => {
-            if (err) console.error('Error closing database:', err.message);
-            else console.log('Closed database connection.');
-            process.exit(0);
-        });
+    server.close(async () => {
+        await closeDb();
+        process.exit(0);
     });
     // Force exit if graceful shutdown hangs.
     setTimeout(() => process.exit(1), 10000).unref();
