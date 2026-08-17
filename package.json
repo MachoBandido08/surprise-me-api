@@ -1,5 +1,5 @@
 {
-  "name": "nodejs_cocktails",
+  "name": "surprise-me-api",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
