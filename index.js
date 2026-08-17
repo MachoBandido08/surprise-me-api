@@ -1,11 +1,16 @@
 import sqlite3 from "sqlite3";
 import express from "express";
 import cors from "cors";
+import rateLimit from "express-rate-limit";
 import {regroupIngredientsToDrinkJSON} from "./app/DrinksUtilitaires.js";
 import {isPantry} from "./app/pantry.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Render serves the app behind one proxy; trust it so req.ip is the real
+// client IP (needed to rate limit per user rather than per proxy).
+app.set('trust proxy', 1);
 
 // --- Database ---------------------------------------------------------------
 
@@ -41,6 +46,18 @@ app.use((req, res, next) => {
     });
     next();
 });
+
+// Rate limit the search endpoints so a single client can't hammer the API.
+// Generous for real use (a search is one request), strict enough to block
+// abuse. /status is left unlimited for health checks.
+const limiter = rateLimit({
+    windowMs: 60 * 1000,   // 1 minute
+    limit: 60,             // up to 60 requests per minute per IP
+    standardHeaders: true, // send RateLimit-* headers
+    legacyHeaders: false,
+    message: {error: 'Too many requests — please wait a moment and try again.'},
+});
+app.use('/drinks', limiter);
 
 // --- Routes -----------------------------------------------------------------
 
