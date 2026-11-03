@@ -1,7 +1,7 @@
 import express from "express";
 import {dbAll} from "./db.js";
 import {regroupIngredientsToDrinkJSON} from "./DrinksUtilitaires.js";
-import {isPantry} from "./pantry.js";
+import {isGarnish, isPantry} from "./pantry.js";
 import {config} from "./config.js";
 
 const {maxMissing, maxPartial, maxIngredients, maxIngredientLength} = config.search;
@@ -82,8 +82,8 @@ router.get('/drinks/:ingredients', asyncHandler(async (req, res) => {
         for (const ing of d.ingredients) {
             if (userOwns(ing.name)) {
                 owned++;              // the user actually listed this
-            } else if (!isPantry(ing.name)) {
-                d.missing.push(ing.name); // real gap (pantry staples are assumed)
+            } else if (!isPantry(ing.name) && !isGarnish(ing.name)) {
+                d.missing.push(ing.name); // real gap (pantry staples and garnishes are optional)
             }
         }
         d.owned = owned;

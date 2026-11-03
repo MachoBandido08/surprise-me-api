@@ -24,3 +24,36 @@ export function isPantry(name) {
     }
     return hasCore;
 }
+
+// Garnishes are nice to have but never required, so they don't count as
+// "missing" either: an olive in a Dry Martini or a cherry in an Old Fashioned.
+// Matched like the pantry: a garnish word plus harmless descriptors, so
+// "Maraschino Cherries" and "Lemon Twist" pass, but "Cherry Brandy" and
+// "Olive Oil" do not. Mint leaves are left out on purpose — in a Mojito
+// they are a real ingredient, not a decoration.
+const GARNISH_CORE = new Set(['olive', 'olives', 'cherry', 'cherries', 'nutmeg', 'onion', 'onions']);
+const GARNISH_FORMS = new Set([
+    'peel', 'twist', 'wedge', 'wedges', 'wheel', 'wheels', 'slice', 'slices',
+    'zest', 'spiral', 'sprig', 'sprigs', 'stick', 'curl',
+]);
+const GARNISH_PRODUCE = new Set([
+    'lemon', 'lemons', 'orange', 'oranges', 'lime', 'limes', 'grapefruit',
+    'pineapple', 'apple', 'cucumber', 'watermelon', 'mint', 'cinnamon', 'rosemary',
+]);
+const GARNISH_DESCRIPTORS = new Set([
+    'maraschino', 'cocktail', 'green', 'black', 'stuffed', 'pitted', 'fresh',
+    'large', 'small', 'grated', 'whole', 'a', 'an', 'of', 'the', 'or', 'and',
+    'for', 'garnish', 'optional',
+]);
+
+export function isGarnish(name) {
+    const tokens = (name || '').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean);
+    let hasCore = false, hasProduce = false, hasForm = false;
+    for (const t of tokens) {
+        if (GARNISH_CORE.has(t)) hasCore = true;
+        else if (GARNISH_PRODUCE.has(t)) hasProduce = true;
+        else if (GARNISH_FORMS.has(t)) hasForm = true;
+        else if (!GARNISH_DESCRIPTORS.has(t) && !/^\d+$/.test(t)) return false; // foreign word
+    }
+    return hasCore || (hasProduce && hasForm);
+}
