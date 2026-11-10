@@ -1,7 +1,6 @@
 import {after, before, test} from "node:test";
 import assert from "node:assert/strict";
-import express from "express";
-import routes from "../app/routes.js";
+import app from "../app.js";
 import {closeDb} from "../app/db.js";
 
 // Kept in its own file: it closes the shared database connection, which would
@@ -9,12 +8,6 @@ import {closeDb} from "../app/db.js";
 let server, base;
 
 before(async () => {
-    const app = express();
-    app.use(routes);
-    // Same shape as the central error handler in index.js (without the logging).
-    app.use((err, req, res, next) => {
-        res.status(500).send({error: 'Internal server error'});
-    });
     await new Promise(resolve => {
         server = app.listen(0, resolve);
     });

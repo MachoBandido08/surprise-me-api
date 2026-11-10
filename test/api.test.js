@@ -1,16 +1,13 @@
 import {after, before, test} from "node:test";
 import assert from "node:assert/strict";
-import express from "express";
-import routes from "../app/routes.js";
+import app from "../app.js";
 import {closeDb, dbAll} from "../app/db.js";
 import {config} from "../app/config.js";
 
-// Runs the real router against the committed (read-only) database.
+// Runs the real app against the committed (read-only) database.
 let server, base;
 
 before(async () => {
-    const app = express();
-    app.use(routes);
     await new Promise(resolve => {
         server = app.listen(0, resolve);
     });
