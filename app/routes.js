@@ -41,8 +41,7 @@ router.get('/drinks/:ingredients', async (req, res) => {
     }
 
     // Candidate drinks: those with at least one ingredient the user has.
-    // Placeholders keep values out of the SQL text; order by drink id so rows
-    // for the same drink arrive contiguously (the regrouping relies on that).
+    // Placeholders keep values out of the SQL text.
     const likeClauses = ingredients.map(() => 'ingredient like ?').join(' or ');
     const sql =
         'select * from Drink D join Drink_Ingredient DI on D.id = DI.drink_id ' +

@@ -28,3 +28,18 @@ test("regroupIngredientsToDrinkJSON: keeps drink fields", () => {
     assert.equal(drink.image_example, "Daiquiri.jpg");
     assert.equal(drink.instructions, "Make Daiquiri");
 });
+
+test("regroupIngredientsToDrinkJSON: works when a drink's rows are not contiguous", () => {
+    const drinks = regroupIngredientsToDrinkJSON([
+        row("1", "Daiquiri", "Rum", "2 oz"),
+        row("2", "Martini", "Gin", "2 oz"),
+        row("1", "Daiquiri", "Lime juice", "1 oz"),
+    ]);
+
+    assert.equal(drinks.length, 2);
+    assert.deepEqual(drinks[0].ingredients.map(i => i.name), ["Rum", "Lime juice"]);
+});
+
+test("regroupIngredientsToDrinkJSON: empty input gives an empty list", () => {
+    assert.deepEqual(regroupIngredientsToDrinkJSON([]), []);
+});

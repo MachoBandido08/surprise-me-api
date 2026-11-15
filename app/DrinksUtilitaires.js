@@ -1,27 +1,17 @@
 import DrinkModel from "./DrinkModel.js";
 import IngredientModel from "./IngredientModel.js";
 
+// Turns flat rows (one per drink + ingredient) into one object per drink.
+// Grouped by id, so it doesn't matter how the rows are ordered.
 export function regroupIngredientsToDrinkJSON(data) {
-    let dataFinalToSend = []
-    let drinkTemp = null, ingredientsTemp = []
+    const drinks = new Map();
 
-    for (const drink_ingredient of data) {
-        if (drinkTemp == null) {
-            drinkTemp = DrinkModel(drink_ingredient)
+    for (const row of data) {
+        if (!drinks.has(row.id)) {
+            drinks.set(row.id, DrinkModel(row));
         }
-
-        if (drinkTemp.id !== drink_ingredient.id) {
-            drinkTemp.ingredients = ingredientsTemp
-            dataFinalToSend.push(drinkTemp)
-            drinkTemp = DrinkModel(drink_ingredient)
-            ingredientsTemp = []
-        }
-
-        ingredientsTemp.push(IngredientModel(drink_ingredient))
+        drinks.get(row.id).ingredients.push(IngredientModel(row));
     }
 
-    drinkTemp.ingredients = ingredientsTemp
-    dataFinalToSend.push(drinkTemp)
-
-    return dataFinalToSend
+    return [...drinks.values()];
 }
