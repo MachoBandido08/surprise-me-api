@@ -86,15 +86,16 @@ The dataset is supplemented with cocktails from [TheCocktailDB](https://www.thec
 ## Project structure
 
 ```
-index.js              # Wiring: middleware, routes, error handling, server lifecycle
+index.js              # Starts the server + graceful shutdown
+app.js                # Builds the Express app (middleware, routes, error handling)
 app/
 ├── config.js         # Tunables (port, rate limit, search caps, input limits)
 ├── db.js             # SQLite connection + dbAll() + closeDb()
 ├── routes.js         # Express router: /status, /drinks, /drinks/:ingredients
-├── pantry.js         # isPantry() — assumed staple detection
+├── pantry.js         # isPantry() / isGarnish() — ingredients that are never "missing"
 ├── DrinksUtilitaires.js  # Groups joined rows into drink objects
-├── DrinkModel.js
-└── IngredientModel.js
+└── mappers.js        # toDrink() / toIngredient() — shape DB rows for the API
+test/                 # node --test (npm test)
 drinks_database.db    # The SQLite dataset
 ```
 
