@@ -2,11 +2,10 @@ import express from "express";
 import {dbAll} from "./db.js";
 import {regroupIngredientsToDrinkJSON} from "./DrinksUtilitaires.js";
 import {isGarnish, isPantry} from "./pantry.js";
+import {makeOwnsMatcher} from "./matching.js";
 import {config} from "./config.js";
 
 const {maxMissing, maxPartial, maxIngredients, maxIngredientLength} = config.search;
-
-const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 const router = express.Router();
 
@@ -68,8 +67,7 @@ router.get('/drinks/:ingredients', async (req, res) => {
     // A drink ingredient counts as owned if one of the user's ingredients
     // matches it as a whole word — so "gin" matches "Gin" but not "oriGINal"
     // or "GINger". The SQL LIKE above is a coarse pre-filter; this is precise.
-    const termRegexes = ingredients.map(t => new RegExp('\\b' + escapeRegex(t) + '\\b', 'i'));
-    const userOwns = (name) => termRegexes.some(re => re.test(name || ''));
+    const userOwns = makeOwnsMatcher(ingredients);
 
     for (const d of drinks) {
         let owned = 0;

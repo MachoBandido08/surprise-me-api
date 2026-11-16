@@ -137,3 +137,16 @@ test("data: every ingredient row points at an existing drink", async () => {
     );
     assert.deepEqual(rows, []);
 });
+
+test("search: dry vermouth satisfies a recipe's plain 'vermouth'", async () => {
+    const {body} = await search("gin,dry vermouth");
+    const addison = body.find(d => d.name === "Addison");
+    assert.ok(addison, "Addison should appear");
+    assert.equal(addison.makeable, true);
+});
+
+test("search: plain gin is not credited for sloe gin", async () => {
+    const {body} = await search("gin");
+    const blackthorn = body.find(d => d.name === "Blackthorn");
+    assert.equal(blackthorn, undefined);
+});
