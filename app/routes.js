@@ -2,15 +2,10 @@ import express from "express";
 import {dbAll} from "./db.js";
 import {regroupIngredientsToDrinkJSON} from "./DrinksUtilitaires.js";
 import {isGarnish, isPantry} from "./pantry.js";
+import {makeOwnsMatcher} from "./matching.js";
 import {config} from "./config.js";
 
 const {maxMissing, maxPartial, maxIngredients, maxIngredientLength} = config.search;
-
-// Wrap async handlers so a rejected promise always reaches the error handler.
-const asyncHandler = (fn) => (req, res, next) =>
-    Promise.resolve(fn(req, res, next)).catch(next);
-
-const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 const router = express.Router();
 
@@ -19,15 +14,15 @@ router.get('/status', (req, res) => {
 });
 
 // GET all drinks (raw rows) — kept as a simple test/debug endpoint.
-router.get('/drinks', asyncHandler(async (req, res) => {
+router.get('/drinks', async (req, res) => {
     const rows = await dbAll('SELECT * FROM Drink');
     res.send(rows);
-}));
+});
 
 // GET drinks that can be made from the given comma-separated ingredients.
 // Returns drinks the user can fully make first, then close partial matches
 // (missing a couple of ingredients), each annotated with what's missing.
-router.get('/drinks/:ingredients', asyncHandler(async (req, res) => {
+router.get('/drinks/:ingredients', async (req, res) => {
     const ingredients = req.params.ingredients
         .split(',')
         .map(i => i.trim().toLowerCase())
@@ -45,8 +40,7 @@ router.get('/drinks/:ingredients', asyncHandler(async (req, res) => {
     }
 
     // Candidate drinks: those with at least one ingredient the user has.
-    // Placeholders keep values out of the SQL text; order by drink id so rows
-    // for the same drink arrive contiguously (the regrouping relies on that).
+    // Placeholders keep values out of the SQL text.
     const likeClauses = ingredients.map(() => 'ingredient like ?').join(' or ');
     const sql =
         'select * from Drink D join Drink_Ingredient DI on D.id = DI.drink_id ' +
@@ -73,8 +67,7 @@ router.get('/drinks/:ingredients', asyncHandler(async (req, res) => {
     // A drink ingredient counts as owned if one of the user's ingredients
     // matches it as a whole word — so "gin" matches "Gin" but not "oriGINal"
     // or "GINger". The SQL LIKE above is a coarse pre-filter; this is precise.
-    const termRegexes = ingredients.map(t => new RegExp('\\b' + escapeRegex(t) + '\\b', 'i'));
-    const userOwns = (name) => termRegexes.some(re => re.test(name || ''));
+    const userOwns = makeOwnsMatcher(ingredients);
 
     for (const d of drinks) {
         let owned = 0;
@@ -104,6 +97,6 @@ router.get('/drinks/:ingredients', asyncHandler(async (req, res) => {
         .slice(0, maxPartial);
 
     res.send([...makeable, ...partial]);
-}));
+});
 
 export default router;
