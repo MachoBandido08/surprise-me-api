@@ -11,6 +11,9 @@
   "author": "",
   "license": "ISC",
   "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
   "description": "",
   "dependencies": {
     "cors": "^2.8.5",
