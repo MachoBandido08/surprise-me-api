@@ -10,16 +10,22 @@ one is safe to run twice, and runs its changes in one transaction.
 Stop the local backend (`npm run dev`) before using `--apply`: on Windows, git
 can't replace the database file while the server has it open.
 
-| Script | What it does |
-| --- | --- |
-| `node scripts/clean-html.js` | Strips HTML tags and entities (`<br/>`, `<sup></sup>`, `&nbsp;`) from drink names and instructions |
-| `node scripts/convert-units.js` | Converts `cl` and `ml` quantities to `oz`. Lists any it can't parse so you can fix them by hand |
-| `node scripts/add-drinks.js <file.json>` | Adds drinks from a JSON file, skipping names that already exist |
+| Script                                   | What it does                                                                                       |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `node scripts/clean-html.js`             | Strips HTML tags and entities (`<br/>`, `<sup></sup>`, `&nbsp;`) from drink names and instructions |
+| `node scripts/convert-units.js`          | Converts `cl` and `ml` quantities to `oz`. Lists any it can't parse so you can fix them by hand    |
+| `node scripts/add-drinks.js <file.json>` | Adds drinks from a JSON file, skipping names that already exist                                    |
 
 `scripts/data/classics.json` is the format example for `add-drinks.js`:
 
 ```json
-[{"name": "Gibson", "instructions": "...", "ingredients": [{"ingredient": "Gin", "quantity": "2 1/2 oz"}]}]
+[
+    {
+        "name": "Gibson",
+        "instructions": "...",
+        "ingredients": [{"ingredient": "Gin", "quantity": "2 1/2 oz"}]
+    }
+]
 ```
 
 ## Adding new data

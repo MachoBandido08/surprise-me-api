@@ -9,6 +9,7 @@ Built with **Express** and a read-only **SQLite** database that ships with the a
 Base URL (production): `https://surprise-me-backend.onrender.com`
 
 ### `GET /drinks/:ingredients`
+
 The main endpoint. `:ingredients` is a comma-separated, URL-encoded list.
 
 ```
@@ -19,37 +20,41 @@ Returns an array of drinks, **fully makeable first** (alphabetical), then the cl
 
 ```jsonc
 [
-  {
-    "id": "325f8efb-…",
-    "name": "Margarita",
-    "image_example": "https://…",
-    "instructions": "Rub the rim of the glass with the lime slice…",
-    "ingredients": [
-      { "name": "Tequila", "quantity": "1 1/2 oz" },
-      { "name": "Triple sec", "quantity": "1/2 oz" }
-    ],
-    "owned": 2,          // ingredients the user listed
-    "missing": [],       // real ingredients still needed (pantry staples excluded)
-    "makeable": true     // true when nothing is missing
-  }
+    {
+        "id": "325f8efb-…",
+        "name": "Margarita",
+        "image_example": "https://…",
+        "instructions": "Rub the rim of the glass with the lime slice…",
+        "ingredients": [
+            {"name": "Tequila", "quantity": "1 1/2 oz"},
+            {"name": "Triple sec", "quantity": "1/2 oz"},
+        ],
+        "owned": 2, // ingredients the user listed
+        "missing": [], // real ingredients still needed (pantry staples excluded)
+        "makeable": true, // true when nothing is missing
+    },
 ]
 ```
 
 How matching works:
+
 - **Whole-word matching** — `gin` matches `Gin` but not `oriGINal` or `GINger`.
 - **Pantry staples are assumed** — `salt`, `ice`, `water`, `sugar`, `pepper`, `lime`, `egg` (and forms like `Lime Juice`, `Sea Salt`, `Egg White`) never count as missing.
-- A drink only appears if the user owns at least one *real* (non-pantry) ingredient of it.
+- A drink only appears if the user owns at least one _real_ (non-pantry) ingredient of it.
 - Duplicate drinks (same name + instructions) are collapsed.
 
 **Validation** (returns `400` with `{ "error": "…" }`): at least one ingredient, at most 20, each ≤ 60 characters.
 
 ### `GET /status`
+
 Health check → `{ "Status": "Running" }`.
 
 ### `GET /drinks`
+
 Returns all drink rows (raw). A simple debug endpoint.
 
 ### Notes
+
 - **CORS** is open (`*`) — it's a public, read-only API.
 - **Rate limited** to 60 requests/minute per IP on `/drinks` (429 with a JSON error). `/status` is unlimited for health checks.
 
@@ -70,14 +75,15 @@ npm start
 
 The server listens on `PORT` (default `3000`).
 
-| Command | What it does |
-|---|---|
+| Command       | What it does                              |
+| ------------- | ----------------------------------------- |
 | `npm run dev` | Start with nodemon (auto-restart on save) |
-| `npm start` | Start with `node index.js` |
+| `npm start`   | Start with `node index.js`                |
 
 ## Data
 
 A **SQLite** file (`drinks_database.db`) committed to the repo, with two tables:
+
 - **`Drink`** — `id`, `name`, `image_example`, `instructions`
 - **`Drink_Ingredient`** — `drink_id`, `ingredient`, `quantity`
 
