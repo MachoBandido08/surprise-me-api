@@ -1,9 +1,9 @@
-import express from "express";
-import {dbAll} from "./db.js";
-import {regroupIngredientsToDrinkJSON} from "./DrinksUtilitaires.js";
-import {isGarnish, isPantry} from "./pantry.js";
-import {makeOwnsMatcher} from "./matching.js";
-import {config} from "./config.js";
+import express from 'express';
+import {dbAll} from './db.js';
+import {regroupIngredientsToDrinkJSON} from './DrinksUtilitaires.js';
+import {isGarnish, isPantry} from './pantry.js';
+import {makeOwnsMatcher} from './matching.js';
+import {config} from './config.js';
 
 const {maxMissing, maxPartial, maxIngredients, maxIngredientLength} = config.search;
 
@@ -25,7 +25,7 @@ router.get('/drinks', async (req, res) => {
 router.get('/drinks/:ingredients', async (req, res) => {
     const ingredients = req.params.ingredients
         .split(',')
-        .map(i => i.trim().toLowerCase())
+        .map((i) => i.trim().toLowerCase())
         .filter(Boolean);
 
     // Validate input before touching the database.
@@ -35,8 +35,10 @@ router.get('/drinks/:ingredients', async (req, res) => {
     if (ingredients.length > maxIngredients) {
         return res.status(400).send({error: `Too many ingredients (max ${maxIngredients}).`});
     }
-    if (ingredients.some(i => i.length > maxIngredientLength)) {
-        return res.status(400).send({error: `Ingredient names are too long (max ${maxIngredientLength} characters).`});
+    if (ingredients.some((i) => i.length > maxIngredientLength)) {
+        return res.status(400).send({
+            error: `Ingredient names are too long (max ${maxIngredientLength} characters).`,
+        });
     }
 
     // Candidate drinks: those with at least one ingredient the user has.
@@ -45,8 +47,9 @@ router.get('/drinks/:ingredients', async (req, res) => {
     const sql =
         'select * from Drink D join Drink_Ingredient DI on D.id = DI.drink_id ' +
         'where D.id in (select distinct drink_id from Drink_Ingredient where ' +
-        likeClauses + ') order by D.id';
-    const params = ingredients.map(ing => '%' + ing + '%');
+        likeClauses +
+        ') order by D.id';
+    const params = ingredients.map((ing) => '%' + ing + '%');
 
     const rows = await dbAll(sql, params);
     if (rows.length === 0) {
@@ -57,7 +60,7 @@ router.get('/drinks/:ingredients', async (req, res) => {
 
     // Collapse duplicate drinks (same content, different id).
     const seen = new Set();
-    drinks = drinks.filter(d => {
+    drinks = drinks.filter((d) => {
         const signature = d.name + '|' + d.instructions;
         if (seen.has(signature)) return false;
         seen.add(signature);
@@ -74,7 +77,7 @@ router.get('/drinks/:ingredients', async (req, res) => {
         d.missing = [];
         for (const ing of d.ingredients) {
             if (userOwns(ing.name)) {
-                owned++;              // the user actually listed this
+                owned++; // the user actually listed this
             } else if (!isPantry(ing.name) && !isGarnish(ing.name)) {
                 d.missing.push(ing.name); // real gap (pantry staples and garnishes are optional)
             }
@@ -85,14 +88,12 @@ router.get('/drinks/:ingredients', async (req, res) => {
 
     // Keep only drinks the user genuinely owns an ingredient of — a pantry
     // staple alone (and LIKE pre-filter false positives) don't count.
-    drinks = drinks.filter(d => d.owned > 0);
+    drinks = drinks.filter((d) => d.owned > 0);
 
     // Fully makeable first (alphabetical), then the closest partial matches.
-    const makeable = drinks
-        .filter(d => d.makeable)
-        .sort((a, b) => a.name.localeCompare(b.name));
+    const makeable = drinks.filter((d) => d.makeable).sort((a, b) => a.name.localeCompare(b.name));
     const partial = drinks
-        .filter(d => !d.makeable && d.missing.length <= maxMissing)
+        .filter((d) => !d.makeable && d.missing.length <= maxMissing)
         .sort((a, b) => a.missing.length - b.missing.length || a.name.localeCompare(b.name))
         .slice(0, maxPartial);
 

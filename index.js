@@ -1,6 +1,6 @@
-import app from "./app.js";
-import {closeDb} from "./app/db.js";
-import {config} from "./app/config.js";
+import app from './app.js';
+import {closeDb} from './app/db.js';
+import {config} from './app/config.js';
 
 // --- Start + graceful shutdown ----------------------------------------------
 

@@ -1,8 +1,8 @@
-import express from "express";
-import cors from "cors";
-import rateLimit from "express-rate-limit";
-import routes from "./app/routes.js";
-import {config} from "./app/config.js";
+import express from 'express';
+import cors from 'cors';
+import rateLimit from 'express-rate-limit';
+import routes from './app/routes.js';
+import {config} from './app/config.js';
 
 // Builds the Express app without starting it, so tests can use the real thing.
 const app = express();
