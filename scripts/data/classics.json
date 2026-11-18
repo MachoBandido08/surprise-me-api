@@ -1,0 +1,376 @@
+[
+  {
+    "name": "Aperol Spritz",
+    "instructions": "Build over ice in a wine glass. Add the prosecco, then the Aperol, and top with soda water. Stir gently and garnish with an orange slice.",
+    "ingredients": [
+      {
+        "ingredient": "Prosecco",
+        "quantity": "3 oz"
+      },
+      {
+        "ingredient": "Aperol",
+        "quantity": "2 oz"
+      },
+      {
+        "ingredient": "Soda water",
+        "quantity": "1 oz"
+      },
+      {
+        "ingredient": "Orange slice",
+        "quantity": "1"
+      }
+    ]
+  },
+  {
+    "name": "Singapore Sling",
+    "instructions": "Shake all ingredients with ice and strain into a tall glass over fresh ice. Garnish with a cherry and a pineapple slice.",
+    "ingredients": [
+      {
+        "ingredient": "Gin",
+        "quantity": "1 1/2 oz"
+      },
+      {
+        "ingredient": "Cherry liqueur",
+        "quantity": "1/2 oz"
+      },
+      {
+        "ingredient": "Cointreau",
+        "quantity": "1/4 oz"
+      },
+      {
+        "ingredient": "Benedictine",
+        "quantity": "1/4 oz"
+      },
+      {
+        "ingredient": "Pineapple juice",
+        "quantity": "4 oz"
+      },
+      {
+        "ingredient": "Lime juice",
+        "quantity": "1/2 oz"
+      },
+      {
+        "ingredient": "Grenadine",
+        "quantity": "1/3 oz"
+      },
+      {
+        "ingredient": "Angostura bitters",
+        "quantity": "1 dash"
+      }
+    ]
+  },
+  {
+    "name": "Brandy Alexander",
+    "instructions": "Shake all ingredients with ice and strain into a chilled cocktail glass. Grate nutmeg on top.",
+    "ingredients": [
+      {
+        "ingredient": "Brandy",
+        "quantity": "1 oz"
+      },
+      {
+        "ingredient": "Creme de cacao",
+        "quantity": "1 oz"
+      },
+      {
+        "ingredient": "Cream",
+        "quantity": "1 oz"
+      },
+      {
+        "ingredient": "Nutmeg",
+        "quantity": "1 pinch"
+      }
+    ]
+  },
+  {
+    "name": "Jungle Bird",
+    "instructions": "Shake all ingredients with ice and strain into a rocks glass over fresh ice. Garnish with a pineapple wedge.",
+    "ingredients": [
+      {
+        "ingredient": "Dark rum",
+        "quantity": "1 1/2 oz"
+      },
+      {
+        "ingredient": "Campari",
+        "quantity": "3/4 oz"
+      },
+      {
+        "ingredient": "Pineapple juice",
+        "quantity": "1 1/2 oz"
+      },
+      {
+        "ingredient": "Lime juice",
+        "quantity": "1/2 oz"
+      },
+      {
+        "ingredient": "Simple syrup",
+        "quantity": "1/2 oz"
+      }
+    ]
+  },
+  {
+    "name": "Painkiller",
+    "instructions": "Shake all ingredients with ice and strain into a tall glass over crushed ice. Grate nutmeg on top.",
+    "ingredients": [
+      {
+        "ingredient": "Dark rum",
+        "quantity": "2 oz"
+      },
+      {
+        "ingredient": "Pineapple juice",
+        "quantity": "4 oz"
+      },
+      {
+        "ingredient": "Orange juice",
+        "quantity": "1 oz"
+      },
+      {
+        "ingredient": "Coconut cream",
+        "quantity": "1 oz"
+      },
+      {
+        "ingredient": "Nutmeg",
+        "quantity": "1 pinch"
+      }
+    ]
+  },
+  {
+    "name": "Gibson",
+    "instructions": "Stir the gin and vermouth with ice and strain into a chilled cocktail glass. Garnish with a cocktail onion.",
+    "ingredients": [
+      {
+        "ingredient": "Gin",
+        "quantity": "2 1/2 oz"
+      },
+      {
+        "ingredient": "Dry vermouth",
+        "quantity": "1/2 oz"
+      },
+      {
+        "ingredient": "Cocktail onion",
+        "quantity": "1"
+      }
+    ]
+  },
+  {
+    "name": "Pimm's Cup",
+    "instructions": "Fill a tall glass with ice. Add the Pimm's and top with lemonade. Garnish with cucumber, mint and an orange slice.",
+    "ingredients": [
+      {
+        "ingredient": "Pimm's No. 1",
+        "quantity": "2 oz"
+      },
+      {
+        "ingredient": "Lemonade",
+        "quantity": "4 oz"
+      },
+      {
+        "ingredient": "Cucumber",
+        "quantity": "2 slices"
+      },
+      {
+        "ingredient": "Mint",
+        "quantity": "1 sprig"
+      },
+      {
+        "ingredient": "Orange slice",
+        "quantity": "1"
+      }
+    ]
+  },
+  {
+    "name": "Hugo",
+    "instructions": "Fill a wine glass with ice. Add the elderflower syrup and prosecco, top with soda water and stir gently. Garnish with mint and a lime slice.",
+    "ingredients": [
+      {
+        "ingredient": "Prosecco",
+        "quantity": "3 oz"
+      },
+      {
+        "ingredient": "Elderflower syrup",
+        "quantity": "1 oz"
+      },
+      {
+        "ingredient": "Soda water",
+        "quantity": "1 oz"
+      },
+      {
+        "ingredient": "Mint",
+        "quantity": "4 leaves"
+      },
+      {
+        "ingredient": "Lime",
+        "quantity": "1 slice"
+      }
+    ]
+  },
+  {
+    "name": "Southside",
+    "instructions": "Shake all ingredients with ice and strain into a chilled cocktail glass. Garnish with a mint leaf.",
+    "ingredients": [
+      {
+        "ingredient": "Gin",
+        "quantity": "2 oz"
+      },
+      {
+        "ingredient": "Lime juice",
+        "quantity": "1 oz"
+      },
+      {
+        "ingredient": "Simple syrup",
+        "quantity": "3/4 oz"
+      },
+      {
+        "ingredient": "Mint",
+        "quantity": "6 leaves"
+      }
+    ]
+  },
+  {
+    "name": "Tom and Jerry",
+    "instructions": "Beat the egg with the sugar until frothy and put it in a mug. Add the brandy and rum, top with hot milk and stir. Grate nutmeg on top.",
+    "ingredients": [
+      {
+        "ingredient": "Brandy",
+        "quantity": "1 oz"
+      },
+      {
+        "ingredient": "Dark rum",
+        "quantity": "1 oz"
+      },
+      {
+        "ingredient": "Milk",
+        "quantity": "4 oz hot"
+      },
+      {
+        "ingredient": "Egg",
+        "quantity": "1"
+      },
+      {
+        "ingredient": "Sugar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "ingredient": "Nutmeg",
+        "quantity": "1 pinch"
+      }
+    ]
+  },
+  {
+    "name": "Cape Codder",
+    "instructions": "Build over ice in a highball glass and stir. Garnish with a lime wedge.",
+    "ingredients": [
+      {
+        "ingredient": "Vodka",
+        "quantity": "2 oz"
+      },
+      {
+        "ingredient": "Cranberry juice",
+        "quantity": "4 oz"
+      },
+      {
+        "ingredient": "Lime wedge",
+        "quantity": "1"
+      }
+    ]
+  },
+  {
+    "name": "Fuzzy Navel",
+    "instructions": "Build over ice in a highball glass and stir. Garnish with an orange slice.",
+    "ingredients": [
+      {
+        "ingredient": "Peach schnapps",
+        "quantity": "1 1/2 oz"
+      },
+      {
+        "ingredient": "Orange juice",
+        "quantity": "4 oz"
+      }
+    ]
+  },
+  {
+    "name": "Woo Woo",
+    "instructions": "Shake all ingredients with ice and strain into a glass over fresh ice. Garnish with a lime wedge.",
+    "ingredients": [
+      {
+        "ingredient": "Vodka",
+        "quantity": "1 oz"
+      },
+      {
+        "ingredient": "Peach schnapps",
+        "quantity": "1 oz"
+      },
+      {
+        "ingredient": "Cranberry juice",
+        "quantity": "2 oz"
+      }
+    ]
+  },
+  {
+    "name": "Jack and Coke",
+    "instructions": "Fill a highball glass with ice. Add the whiskey, top with cola and stir gently.",
+    "ingredients": [
+      {
+        "ingredient": "Whiskey",
+        "quantity": "2 oz"
+      },
+      {
+        "ingredient": "Cola",
+        "quantity": "4 oz"
+      }
+    ]
+  },
+  {
+    "name": "Shirley Temple",
+    "instructions": "Fill a tall glass with ice. Add the grenadine, top with ginger ale and stir. Garnish with a maraschino cherry.",
+    "ingredients": [
+      {
+        "ingredient": "Ginger ale",
+        "quantity": "6 oz"
+      },
+      {
+        "ingredient": "Grenadine",
+        "quantity": "1/2 oz"
+      },
+      {
+        "ingredient": "Maraschino cherry",
+        "quantity": "1"
+      }
+    ]
+  },
+  {
+    "name": "Arnold Palmer",
+    "instructions": "Fill a tall glass with ice. Add the iced tea and lemonade and stir.",
+    "ingredients": [
+      {
+        "ingredient": "Iced tea",
+        "quantity": "4 oz"
+      },
+      {
+        "ingredient": "Lemonade",
+        "quantity": "4 oz"
+      }
+    ]
+  },
+  {
+    "name": "Virgin Mojito",
+    "instructions": "Muddle the mint with the sugar and lime juice in a tall glass. Fill with crushed ice, top with soda water and stir. Garnish with a mint sprig.",
+    "ingredients": [
+      {
+        "ingredient": "Lime juice",
+        "quantity": "1 oz"
+      },
+      {
+        "ingredient": "Sugar",
+        "quantity": "2 tsp"
+      },
+      {
+        "ingredient": "Mint",
+        "quantity": "6 leaves"
+      },
+      {
+        "ingredient": "Soda water",
+        "quantity": "4 oz"
+      }
+    ]
+  }
+]
