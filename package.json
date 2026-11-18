@@ -20,8 +20,8 @@
     "description": "",
     "dependencies": {
         "cors": "^2.8.5",
-        "express": "^5.1.0",
-        "express-rate-limit": "^8.6.2",
+        "express": "^5.3.0",
+        "express-rate-limit": "^8.7.4",
         "sqlite3": "^5.1.7"
     },
     "devDependencies": {
