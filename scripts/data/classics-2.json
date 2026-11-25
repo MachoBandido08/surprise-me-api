@@ -1,0 +1,253 @@
+[
+    {
+        "name": "Paloma",
+        "instructions": "Salt half the rim of a highball glass and fill it with ice. Add the tequila and lime juice, top with grapefruit soda and stir gently. Garnish with a grapefruit wedge.",
+        "ingredients": [
+            {"ingredient": "Blanco tequila", "quantity": "2 oz"},
+            {"ingredient": "Lime juice", "quantity": "1/2 oz"},
+            {"ingredient": "Grapefruit soda", "quantity": "4 oz"},
+            {"ingredient": "Salt", "quantity": "pinch"}
+        ]
+    },
+    {
+        "name": "Bloody Mary",
+        "instructions": "Add everything to a shaker with ice and gently roll it back and forth between two tins rather than shaking hard. Pour into an ice-filled highball glass and garnish with a celery stalk and a lemon wedge.",
+        "ingredients": [
+            {"ingredient": "Vodka", "quantity": "1 1/2 oz"},
+            {"ingredient": "Tomato juice", "quantity": "4 oz"},
+            {"ingredient": "Lemon juice", "quantity": "1/2 oz"},
+            {"ingredient": "Worcestershire sauce", "quantity": "2 dashes"},
+            {"ingredient": "Hot sauce", "quantity": "2 dashes"},
+            {"ingredient": "Celery salt", "quantity": "pinch"},
+            {"ingredient": "Black pepper", "quantity": "pinch"}
+        ]
+    },
+    {
+        "name": "Boulevardier",
+        "instructions": "Stir all ingredients with ice until well chilled. Strain into a rocks glass over a large ice cube, or into a chilled coupe. Garnish with an orange twist.",
+        "ingredients": [
+            {"ingredient": "Bourbon", "quantity": "1 1/4 oz"},
+            {"ingredient": "Campari", "quantity": "1 oz"},
+            {"ingredient": "Sweet Vermouth", "quantity": "1 oz"}
+        ]
+    },
+    {
+        "name": "Paper Plane",
+        "instructions": "Shake all four ingredients with ice and strain into a chilled coupe. No garnish needed.",
+        "ingredients": [
+            {"ingredient": "Bourbon", "quantity": "3/4 oz"},
+            {"ingredient": "Aperol", "quantity": "3/4 oz"},
+            {"ingredient": "Amaro Nonino", "quantity": "3/4 oz"},
+            {"ingredient": "Lemon juice", "quantity": "3/4 oz"}
+        ]
+    },
+    {
+        "name": "Tommy's Margarita",
+        "instructions": "Shake all ingredients with ice and strain into a rocks glass over fresh ice. Garnish with a lime wheel. No salt rim and no orange liqueur: agave syrup does the sweetening.",
+        "ingredients": [
+            {"ingredient": "Blanco tequila", "quantity": "2 oz"},
+            {"ingredient": "Lime juice", "quantity": "1 oz"},
+            {"ingredient": "Agave syrup", "quantity": "1/2 oz"}
+        ]
+    },
+    {
+        "name": "Gold Rush",
+        "instructions": "Shake all ingredients with ice and strain into a rocks glass over a large ice cube. Garnish with a lemon twist.",
+        "ingredients": [
+            {"ingredient": "Bourbon", "quantity": "2 oz"},
+            {"ingredient": "Lemon juice", "quantity": "3/4 oz"},
+            {"ingredient": "Honey syrup", "quantity": "3/4 oz"}
+        ]
+    },
+    {
+        "name": "Gin and Tonic",
+        "instructions": "Fill a highball or balloon glass with ice. Add the gin, top with chilled tonic water and stir once. Garnish with a lime wedge.",
+        "ingredients": [
+            {"ingredient": "Gin", "quantity": "2 oz"},
+            {"ingredient": "Tonic water", "quantity": "4 oz"},
+            {"ingredient": "Lime wedge", "quantity": "1"}
+        ]
+    },
+    {
+        "name": "Eggnog",
+        "instructions": "Shake the egg, syrup, milk and cream without ice to froth them, then add the bourbon and ice and shake again. Strain into a chilled glass and grate fresh nutmeg on top.",
+        "ingredients": [
+            {"ingredient": "Bourbon", "quantity": "1 1/2 oz"},
+            {"ingredient": "Egg", "quantity": "1"},
+            {"ingredient": "Simple syrup", "quantity": "3/4 oz"},
+            {"ingredient": "Milk", "quantity": "2 oz"},
+            {"ingredient": "Heavy cream", "quantity": "1 oz"},
+            {"ingredient": "Nutmeg", "quantity": "pinch"}
+        ]
+    },
+    {
+        "name": "Martinez",
+        "instructions": "Stir all ingredients with ice until well chilled and strain into a chilled coupe. Garnish with an orange twist.",
+        "ingredients": [
+            {"ingredient": "Old Tom gin", "quantity": "1 1/2 oz"},
+            {"ingredient": "Sweet Vermouth", "quantity": "1 1/2 oz"},
+            {"ingredient": "Maraschino liqueur", "quantity": "1 tsp"},
+            {"ingredient": "Orange bitters", "quantity": "2 dashes"}
+        ]
+    },
+    {
+        "name": "Corpse Reviver #2",
+        "instructions": "Rinse a chilled coupe with the absinthe and discard the excess. Shake the remaining ingredients with ice and strain into the glass. Garnish with an orange twist.",
+        "ingredients": [
+            {"ingredient": "Gin", "quantity": "3/4 oz"},
+            {"ingredient": "Cointreau", "quantity": "3/4 oz"},
+            {"ingredient": "Lillet Blanc", "quantity": "3/4 oz"},
+            {"ingredient": "Lemon juice", "quantity": "3/4 oz"},
+            {"ingredient": "Absinthe", "quantity": "1 dash"}
+        ]
+    },
+    {
+        "name": "Naked & Famous",
+        "instructions": "Shake all four ingredients with ice and strain into a chilled coupe. No garnish needed.",
+        "ingredients": [
+            {"ingredient": "Mezcal", "quantity": "3/4 oz"},
+            {"ingredient": "Yellow Chartreuse", "quantity": "3/4 oz"},
+            {"ingredient": "Aperol", "quantity": "3/4 oz"},
+            {"ingredient": "Lime juice", "quantity": "3/4 oz"}
+        ]
+    },
+    {
+        "name": "Hanky Panky",
+        "instructions": "Stir all ingredients with ice and strain into a chilled coupe. Garnish with an orange twist.",
+        "ingredients": [
+            {"ingredient": "Gin", "quantity": "1 1/2 oz"},
+            {"ingredient": "Sweet Vermouth", "quantity": "1 1/2 oz"},
+            {"ingredient": "Fernet-Branca", "quantity": "2 dashes"}
+        ]
+    },
+    {
+        "name": "Vieux Carré",
+        "instructions": "Stir all ingredients with ice and strain into a rocks glass over a large ice cube. Garnish with a lemon twist.",
+        "ingredients": [
+            {"ingredient": "Rye whiskey", "quantity": "3/4 oz"},
+            {"ingredient": "Cognac", "quantity": "3/4 oz"},
+            {"ingredient": "Sweet Vermouth", "quantity": "3/4 oz"},
+            {"ingredient": "Benedictine", "quantity": "1 tsp"},
+            {"ingredient": "Peychaud's bitters", "quantity": "2 dashes"},
+            {"ingredient": "Angostura bitters", "quantity": "2 dashes"}
+        ]
+    },
+    {
+        "name": "El Presidente",
+        "instructions": "Stir all ingredients with ice and strain into a chilled coupe. Garnish with an orange twist.",
+        "ingredients": [
+            {"ingredient": "White rum", "quantity": "1 1/2 oz"},
+            {"ingredient": "Blanc vermouth", "quantity": "3/4 oz"},
+            {"ingredient": "Orange curacao", "quantity": "1/4 oz"},
+            {"ingredient": "Grenadine", "quantity": "1 tsp"}
+        ]
+    },
+    {
+        "name": "Trinidad Sour",
+        "instructions": "Shake all ingredients with ice and strain into a chilled coupe. Yes, a full ounce of Angostura is the point: it is the base of the drink.",
+        "ingredients": [
+            {"ingredient": "Angostura bitters", "quantity": "1 oz"},
+            {"ingredient": "Orgeat syrup", "quantity": "1 oz"},
+            {"ingredient": "Lemon juice", "quantity": "3/4 oz"},
+            {"ingredient": "Rye whiskey", "quantity": "1/2 oz"}
+        ]
+    },
+    {
+        "name": "Between the Sheets",
+        "instructions": "Shake all ingredients with ice and strain into a chilled coupe. Garnish with a lemon twist.",
+        "ingredients": [
+            {"ingredient": "Cognac", "quantity": "1 oz"},
+            {"ingredient": "White rum", "quantity": "1 oz"},
+            {"ingredient": "Cointreau", "quantity": "1 oz"},
+            {"ingredient": "Lemon juice", "quantity": "3/4 oz"}
+        ]
+    },
+    {
+        "name": "Ward Eight",
+        "instructions": "Shake all ingredients with ice and strain into a chilled coupe. Garnish with a cherry.",
+        "ingredients": [
+            {"ingredient": "Rye whiskey", "quantity": "2 oz"},
+            {"ingredient": "Lemon juice", "quantity": "3/4 oz"},
+            {"ingredient": "Orange juice", "quantity": "3/4 oz"},
+            {"ingredient": "Grenadine", "quantity": "1/4 oz"}
+        ]
+    },
+    {
+        "name": "Toronto",
+        "instructions": "Stir all ingredients with ice and strain into a chilled coupe. Garnish with an orange twist.",
+        "ingredients": [
+            {"ingredient": "Rye whiskey", "quantity": "2 oz"},
+            {"ingredient": "Fernet-Branca", "quantity": "1/4 oz"},
+            {"ingredient": "Simple syrup", "quantity": "1/4 oz"},
+            {"ingredient": "Angostura bitters", "quantity": "2 dashes"}
+        ]
+    },
+    {
+        "name": "Charlie Chaplin",
+        "instructions": "Shake all ingredients with ice and strain into a chilled coupe. Garnish with a lime wheel.",
+        "ingredients": [
+            {"ingredient": "Sloe gin", "quantity": "1 oz"},
+            {"ingredient": "Apricot brandy", "quantity": "1 oz"},
+            {"ingredient": "Lime juice", "quantity": "1 oz"}
+        ]
+    },
+    {
+        "name": "Jasmine",
+        "instructions": "Shake all ingredients with ice and strain into a chilled coupe. Garnish with a lemon twist. It tastes surprisingly like grapefruit.",
+        "ingredients": [
+            {"ingredient": "Gin", "quantity": "1 1/2 oz"},
+            {"ingredient": "Cointreau", "quantity": "1/4 oz"},
+            {"ingredient": "Campari", "quantity": "1/4 oz"},
+            {"ingredient": "Lemon juice", "quantity": "3/4 oz"}
+        ]
+    },
+    {
+        "name": "Garibaldi",
+        "instructions": "Pour the Campari into an ice-filled highball glass. Blend or whisk the orange juice until frothy, pour it on top and stir gently. Garnish with an orange wedge.",
+        "ingredients": [
+            {"ingredient": "Campari", "quantity": "1 1/2 oz"},
+            {"ingredient": "Orange juice", "quantity": "4 oz"}
+        ]
+    },
+    {
+        "name": "Oaxaca Old Fashioned",
+        "instructions": "Stir all ingredients with ice and strain into a rocks glass over a large ice cube. Garnish with a flamed orange twist.",
+        "ingredients": [
+            {"ingredient": "Reposado tequila", "quantity": "1 1/2 oz"},
+            {"ingredient": "Mezcal", "quantity": "1/2 oz"},
+            {"ingredient": "Agave syrup", "quantity": "1 tsp"},
+            {"ingredient": "Angostura bitters", "quantity": "2 dashes"}
+        ]
+    },
+    {
+        "name": "Siesta",
+        "instructions": "Shake all ingredients with ice and strain into a chilled coupe. Garnish with a grapefruit twist.",
+        "ingredients": [
+            {"ingredient": "Blanco tequila", "quantity": "1 1/2 oz"},
+            {"ingredient": "Campari", "quantity": "1/2 oz"},
+            {"ingredient": "Grapefruit juice", "quantity": "1/2 oz"},
+            {"ingredient": "Lime juice", "quantity": "1/2 oz"},
+            {"ingredient": "Simple syrup", "quantity": "1/2 oz"}
+        ]
+    },
+    {
+        "name": "Appletini",
+        "instructions": "Shake all ingredients with ice and strain into a chilled martini glass. Garnish with a thin apple slice.",
+        "ingredients": [
+            {"ingredient": "Vodka", "quantity": "1 1/2 oz"},
+            {"ingredient": "Sour apple liqueur", "quantity": "1 oz"},
+            {"ingredient": "Lemon juice", "quantity": "1/2 oz"}
+        ]
+    },
+    {
+        "name": "Bloody Caesar",
+        "instructions": "Rim a highball glass with celery salt and fill it with ice. Add the vodka, Worcestershire and hot sauce, top with Clamato and stir. Garnish with a celery stalk and a lime wedge.",
+        "ingredients": [
+            {"ingredient": "Vodka", "quantity": "1 1/2 oz"},
+            {"ingredient": "Clamato juice", "quantity": "4 oz"},
+            {"ingredient": "Worcestershire sauce", "quantity": "2 dashes"},
+            {"ingredient": "Hot sauce", "quantity": "2 dashes"},
+            {"ingredient": "Celery salt", "quantity": "pinch"}
+        ]
+    }
+]
