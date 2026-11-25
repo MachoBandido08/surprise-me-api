@@ -1,0 +1,456 @@
+[
+    {
+        "name": "Bacardi Cocktail",
+        "instructions": "Shake the rum, lime juice and grenadine hard with ice. Strain into a chilled coupe.",
+        "ingredients": [
+            {"ingredient": "White rum", "quantity": "1 3/4 oz"},
+            {"ingredient": "Lime juice", "quantity": "3/4 oz"},
+            {"ingredient": "Grenadine", "quantity": "1/2 oz"}
+        ]
+    },
+    {
+        "name": "Angel Face",
+        "instructions": "Stir all three with ice until cold. Strain into a chilled coupe.",
+        "ingredients": [
+            {"ingredient": "Gin", "quantity": "1 oz"},
+            {"ingredient": "Calvados", "quantity": "1 oz"},
+            {"ingredient": "Apricot brandy", "quantity": "1 oz"}
+        ]
+    },
+    {
+        "name": "Blood and Sand",
+        "instructions": "Shake everything with ice and strain into a chilled coupe. Garnish with an orange peel.",
+        "ingredients": [
+            {"ingredient": "Scotch whisky", "quantity": "3/4 oz"},
+            {"ingredient": "Cherry Heering", "quantity": "3/4 oz"},
+            {"ingredient": "Sweet Vermouth", "quantity": "3/4 oz"},
+            {"ingredient": "Orange juice", "quantity": "3/4 oz"}
+        ]
+    },
+    {
+        "name": "Bronx",
+        "instructions": "Shake with ice and strain into a chilled coupe. Garnish with an orange twist.",
+        "ingredients": [
+            {"ingredient": "Gin", "quantity": "1 1/2 oz"},
+            {"ingredient": "Sweet Vermouth", "quantity": "1/2 oz"},
+            {"ingredient": "Dry Vermouth", "quantity": "1/2 oz"},
+            {"ingredient": "Orange juice", "quantity": "1 oz"}
+        ]
+    },
+    {
+        "name": "Champagne Cocktail",
+        "instructions": "Put the sugar cube in a flute and soak it with the bitters. Add the cognac if using, then slowly top with chilled champagne. Garnish with a lemon twist.",
+        "ingredients": [
+            {"ingredient": "Sugar cube", "quantity": "1"},
+            {"ingredient": "Angostura bitters", "quantity": "3 dashes"},
+            {"ingredient": "Cognac", "quantity": "1/2 oz"},
+            {"ingredient": "Champagne", "quantity": "4 oz"}
+        ]
+    },
+    {
+        "name": "Brandy Crusta",
+        "instructions": "Rim a small wine glass with sugar and line it with a long strip of lemon peel. Shake the rest with ice and strain into the glass.",
+        "ingredients": [
+            {"ingredient": "Cognac", "quantity": "2 oz"},
+            {"ingredient": "Orange curaçao", "quantity": "1/4 oz"},
+            {"ingredient": "Maraschino liqueur", "quantity": "1/4 oz"},
+            {"ingredient": "Lemon juice", "quantity": "1/2 oz"},
+            {"ingredient": "Simple syrup", "quantity": "1/4 oz"},
+            {"ingredient": "Angostura bitters", "quantity": "1 dash"}
+        ]
+    },
+    {
+        "name": "Sloe Gin Fizz",
+        "instructions": "Shake the sloe gin, lemon juice and syrup with ice. Strain into a chilled highball glass without ice and top with soda water.",
+        "ingredients": [
+            {"ingredient": "Sloe gin", "quantity": "2 oz"},
+            {"ingredient": "Lemon juice", "quantity": "3/4 oz"},
+            {"ingredient": "Simple syrup", "quantity": "1/2 oz"},
+            {"ingredient": "Soda water", "quantity": "2 oz"}
+        ]
+    },
+    {
+        "name": "Negroni Sbagliato",
+        "instructions": "Pour the Campari and vermouth into an ice-filled rocks glass and stir briefly. Top with prosecco and garnish with an orange slice.",
+        "ingredients": [
+            {"ingredient": "Campari", "quantity": "1 oz"},
+            {"ingredient": "Sweet Vermouth", "quantity": "1 oz"},
+            {"ingredient": "Prosecco", "quantity": "1 oz"}
+        ]
+    },
+    {
+        "name": "Mezcal Negroni",
+        "instructions": "Stir all three with ice and strain into a rocks glass over a large ice cube. Garnish with an orange peel.",
+        "ingredients": [
+            {"ingredient": "Mezcal", "quantity": "1 oz"},
+            {"ingredient": "Campari", "quantity": "1 oz"},
+            {"ingredient": "Sweet Vermouth", "quantity": "1 oz"}
+        ]
+    },
+    {
+        "name": "Porn Star Martini",
+        "instructions": "Scoop the passion fruit pulp into a shaker, add the vodka, liqueur, lime juice and vanilla syrup and shake hard with ice. Strain into a chilled coupe, float half a passion fruit on top and serve the prosecco in a shot glass on the side.",
+        "ingredients": [
+            {"ingredient": "Vanilla vodka", "quantity": "1 1/2 oz"},
+            {"ingredient": "Passion fruit liqueur", "quantity": "1/2 oz"},
+            {"ingredient": "Lime juice", "quantity": "1/2 oz"},
+            {"ingredient": "Vanilla syrup", "quantity": "1/2 oz"},
+            {"ingredient": "Passion fruit", "quantity": "1"},
+            {"ingredient": "Prosecco", "quantity": "2 oz"}
+        ]
+    },
+    {
+        "name": "Japanese Slipper",
+        "instructions": "Shake with ice and strain into a chilled coupe. Garnish with a slice of honeydew melon.",
+        "ingredients": [
+            {"ingredient": "Midori", "quantity": "1 oz"},
+            {"ingredient": "Cointreau", "quantity": "1 oz"},
+            {"ingredient": "Lemon juice", "quantity": "1 oz"}
+        ]
+    },
+    {
+        "name": "Golden Dream",
+        "instructions": "Shake everything hard with ice and strain into a chilled coupe.",
+        "ingredients": [
+            {"ingredient": "Galliano", "quantity": "3/4 oz"},
+            {"ingredient": "Triple sec", "quantity": "3/4 oz"},
+            {"ingredient": "Orange juice", "quantity": "3/4 oz"},
+            {"ingredient": "Cream", "quantity": "3/4 oz"}
+        ]
+    },
+    {
+        "name": "Remember the Maine",
+        "instructions": "Rinse a chilled coupe with absinthe and discard the excess. Stir the rye, vermouth and Cherry Heering with ice and strain into the glass. Garnish with a cherry.",
+        "ingredients": [
+            {"ingredient": "Rye whiskey", "quantity": "2 oz"},
+            {"ingredient": "Sweet Vermouth", "quantity": "3/4 oz"},
+            {"ingredient": "Cherry Heering", "quantity": "1/4 oz"},
+            {"ingredient": "Absinthe", "quantity": "rinse"}
+        ]
+    },
+    {
+        "name": "Improved Whiskey Cocktail",
+        "instructions": "Rinse a rocks glass with absinthe and add a large ice cube. Stir the rest with ice and strain into the glass. Garnish with a lemon twist.",
+        "ingredients": [
+            {"ingredient": "Rye whiskey", "quantity": "2 oz"},
+            {"ingredient": "Maraschino liqueur", "quantity": "1/4 oz"},
+            {"ingredient": "Simple syrup", "quantity": "1/4 oz"},
+            {"ingredient": "Angostura bitters", "quantity": "2 dashes"},
+            {"ingredient": "Absinthe", "quantity": "rinse"}
+        ]
+    },
+    {
+        "name": "Fish House Punch",
+        "instructions": "Shake everything with ice and strain into an ice-filled punch cup or rocks glass. Grate a little nutmeg on top. Scale up and serve over a block of ice for a party.",
+        "ingredients": [
+            {"ingredient": "Jamaican rum", "quantity": "1 oz"},
+            {"ingredient": "Cognac", "quantity": "1/2 oz"},
+            {"ingredient": "Peach brandy", "quantity": "1/2 oz"},
+            {"ingredient": "Lemon juice", "quantity": "3/4 oz"},
+            {"ingredient": "Simple syrup", "quantity": "3/4 oz"},
+            {"ingredient": "Water", "quantity": "1 oz"}
+        ]
+    },
+    {
+        "name": "Sherry Cobbler",
+        "instructions": "Shake the sherry and syrup with the orange slices and ice. Strain into a glass packed with crushed ice and garnish with berries and a mint sprig. Serve with a straw.",
+        "ingredients": [
+            {"ingredient": "Amontillado sherry", "quantity": "3 oz"},
+            {"ingredient": "Simple syrup", "quantity": "1/2 oz"},
+            {"ingredient": "Orange", "quantity": "2 slices"}
+        ]
+    },
+    {
+        "name": "Brandy Flip",
+        "instructions": "Shake everything without ice to whip the egg, then shake again with ice. Strain into a small wine glass and grate nutmeg on top.",
+        "ingredients": [
+            {"ingredient": "Brandy", "quantity": "2 oz"},
+            {"ingredient": "Simple syrup", "quantity": "1/2 oz"},
+            {"ingredient": "Egg", "quantity": "1"},
+            {"ingredient": "Nutmeg", "quantity": "pinch"}
+        ]
+    },
+    {
+        "name": "Air Mail",
+        "instructions": "Shake the rum, lime juice and honey syrup with ice. Strain into a flute and top with champagne.",
+        "ingredients": [
+            {"ingredient": "Gold rum", "quantity": "1 oz"},
+            {"ingredient": "Lime juice", "quantity": "1/2 oz"},
+            {"ingredient": "Honey syrup", "quantity": "1/2 oz"},
+            {"ingredient": "Champagne", "quantity": "2 oz"}
+        ]
+    },
+    {
+        "name": "Hugo Spritz",
+        "instructions": "Gently press the mint in a large wine glass, fill with ice and add the elderflower liqueur. Top with prosecco and soda water, stir once and garnish with a lime wheel.",
+        "ingredients": [
+            {"ingredient": "Elderflower liqueur", "quantity": "1 oz"},
+            {"ingredient": "Prosecco", "quantity": "3 oz"},
+            {"ingredient": "Soda water", "quantity": "1 oz"},
+            {"ingredient": "Mint", "quantity": "6 leaves"},
+            {"ingredient": "Lime", "quantity": "1 wheel"}
+        ]
+    },
+    {
+        "name": "Scorpion",
+        "instructions": "Shake everything with crushed ice and pour into a tall glass or tiki mug. Garnish with a gardenia or a mint sprig.",
+        "ingredients": [
+            {"ingredient": "White rum", "quantity": "2 oz"},
+            {"ingredient": "Brandy", "quantity": "1 oz"},
+            {"ingredient": "Orange juice", "quantity": "2 oz"},
+            {"ingredient": "Lemon juice", "quantity": "1 1/2 oz"},
+            {"ingredient": "Orgeat", "quantity": "1/2 oz"}
+        ]
+    },
+    {
+        "name": "Navy Grog",
+        "instructions": "Shake with ice and strain into a double rocks glass over crushed ice. Garnish with a mint sprig.",
+        "ingredients": [
+            {"ingredient": "Demerara rum", "quantity": "1 oz"},
+            {"ingredient": "Jamaican rum", "quantity": "1 oz"},
+            {"ingredient": "White rum", "quantity": "1 oz"},
+            {"ingredient": "Lime juice", "quantity": "3/4 oz"},
+            {"ingredient": "Grapefruit juice", "quantity": "3/4 oz"},
+            {"ingredient": "Honey syrup", "quantity": "1 oz"},
+            {"ingredient": "Soda water", "quantity": "1 oz"}
+        ]
+    },
+    {
+        "name": "Fog Cutter",
+        "instructions": "Shake everything except the sherry with ice and pour into a tall glass or tiki mug filled with crushed ice. Float the sherry on top.",
+        "ingredients": [
+            {"ingredient": "White rum", "quantity": "1 1/2 oz"},
+            {"ingredient": "Gin", "quantity": "1/2 oz"},
+            {"ingredient": "Brandy", "quantity": "1/2 oz"},
+            {"ingredient": "Orange juice", "quantity": "2 oz"},
+            {"ingredient": "Lemon juice", "quantity": "1 oz"},
+            {"ingredient": "Orgeat", "quantity": "1/2 oz"},
+            {"ingredient": "Cream sherry", "quantity": "1/2 oz"}
+        ]
+    },
+    {
+        "name": "Suffering Bastard",
+        "instructions": "Shake the gin, brandy, lime juice and bitters with ice. Strain into an ice-filled highball glass and top with ginger beer. Garnish with mint and an orange slice.",
+        "ingredients": [
+            {"ingredient": "Gin", "quantity": "1 oz"},
+            {"ingredient": "Brandy", "quantity": "1 oz"},
+            {"ingredient": "Lime juice", "quantity": "1/2 oz"},
+            {"ingredient": "Angostura bitters", "quantity": "2 dashes"},
+            {"ingredient": "Ginger beer", "quantity": "4 oz"}
+        ]
+    },
+    {
+        "name": "Three Dots and a Dash",
+        "instructions": "Shake everything with crushed ice and pour into a tall glass. Garnish with three cherries and a pineapple spear on a pick.",
+        "ingredients": [
+            {"ingredient": "Aged rhum agricole", "quantity": "1 1/2 oz"},
+            {"ingredient": "Demerara rum", "quantity": "1/2 oz"},
+            {"ingredient": "Lime juice", "quantity": "1/2 oz"},
+            {"ingredient": "Orange juice", "quantity": "1/2 oz"},
+            {"ingredient": "Honey syrup", "quantity": "1/2 oz"},
+            {"ingredient": "Falernum", "quantity": "1/4 oz"},
+            {"ingredient": "Allspice dram", "quantity": "1/4 oz"},
+            {"ingredient": "Angostura bitters", "quantity": "1 dash"}
+        ]
+    },
+    {
+        "name": "Missionary's Downfall",
+        "instructions": "Blend everything with a cup of crushed ice until smooth. Pour into a coupe or tiki glass and garnish with a mint sprig.",
+        "ingredients": [
+            {"ingredient": "White rum", "quantity": "1 oz"},
+            {"ingredient": "Peach brandy", "quantity": "1/2 oz"},
+            {"ingredient": "Lime juice", "quantity": "1/2 oz"},
+            {"ingredient": "Honey syrup", "quantity": "1/2 oz"},
+            {"ingredient": "Pineapple juice", "quantity": "1 oz"},
+            {"ingredient": "Mint", "quantity": "10 leaves"}
+        ]
+    },
+    {
+        "name": "Saturn",
+        "instructions": "Shake everything with crushed ice and pour into a tiki glass or coupe. Garnish with a lemon peel and a cherry.",
+        "ingredients": [
+            {"ingredient": "Gin", "quantity": "1 1/4 oz"},
+            {"ingredient": "Lemon juice", "quantity": "1/2 oz"},
+            {"ingredient": "Passion fruit syrup", "quantity": "1/2 oz"},
+            {"ingredient": "Falernum", "quantity": "1/4 oz"},
+            {"ingredient": "Orgeat", "quantity": "1/4 oz"}
+        ]
+    },
+    {
+        "name": "Test Pilot",
+        "instructions": "Shake everything with crushed ice and pour into a double rocks glass. Garnish with a cherry.",
+        "ingredients": [
+            {"ingredient": "Jamaican rum", "quantity": "1 1/2 oz"},
+            {"ingredient": "White rum", "quantity": "3/4 oz"},
+            {"ingredient": "Lime juice", "quantity": "1/2 oz"},
+            {"ingredient": "Falernum", "quantity": "1/2 oz"},
+            {"ingredient": "Cointreau", "quantity": "1/2 oz"},
+            {"ingredient": "Angostura bitters", "quantity": "1 dash"},
+            {"ingredient": "Absinthe", "quantity": "6 drops"}
+        ]
+    },
+    {
+        "name": "Cobra's Fang",
+        "instructions": "Shake everything with crushed ice and pour into a tall glass or tiki mug. Garnish with a lime wheel and a mint sprig.",
+        "ingredients": [
+            {"ingredient": "Demerara rum", "quantity": "1 1/2 oz"},
+            {"ingredient": "Lime juice", "quantity": "1/2 oz"},
+            {"ingredient": "Orange juice", "quantity": "1/2 oz"},
+            {"ingredient": "Falernum", "quantity": "1/2 oz"},
+            {"ingredient": "Passion fruit syrup", "quantity": "1/4 oz"},
+            {"ingredient": "Angostura bitters", "quantity": "1 dash"},
+            {"ingredient": "Absinthe", "quantity": "1 dash"}
+        ]
+    },
+    {
+        "name": "Dr. Funk",
+        "instructions": "Shake the rum, lime juice, grenadine and absinthe with ice. Strain into a tall glass filled with crushed ice and top with soda water.",
+        "ingredients": [
+            {"ingredient": "Dark rum", "quantity": "2 oz"},
+            {"ingredient": "Lime juice", "quantity": "3/4 oz"},
+            {"ingredient": "Grenadine", "quantity": "1/2 oz"},
+            {"ingredient": "Absinthe", "quantity": "1/4 oz"},
+            {"ingredient": "Soda water", "quantity": "2 oz"}
+        ]
+    },
+    {
+        "name": "Queen's Park Swizzle",
+        "instructions": "Press the mint lightly in a tall glass, add the rum, lime juice and syrup, and fill with crushed ice. Swizzle until the glass frosts, top with more crushed ice and dash the bitters on top. Garnish with a mint sprig.",
+        "ingredients": [
+            {"ingredient": "Demerara rum", "quantity": "2 oz"},
+            {"ingredient": "Lime juice", "quantity": "3/4 oz"},
+            {"ingredient": "Simple syrup", "quantity": "3/4 oz"},
+            {"ingredient": "Mint", "quantity": "8 leaves"},
+            {"ingredient": "Angostura bitters", "quantity": "4 dashes"}
+        ]
+    },
+    {
+        "name": "Chartreuse Swizzle",
+        "instructions": "Add everything to a tall glass filled with crushed ice and swizzle until cold. Top with more crushed ice and garnish with a mint sprig and grated nutmeg.",
+        "ingredients": [
+            {"ingredient": "Green Chartreuse", "quantity": "1 1/4 oz"},
+            {"ingredient": "Falernum", "quantity": "1/2 oz"},
+            {"ingredient": "Pineapple juice", "quantity": "1 oz"},
+            {"ingredient": "Lime juice", "quantity": "3/4 oz"}
+        ]
+    },
+    {
+        "name": "Blue Hawaiian",
+        "instructions": "Shake everything with ice and strain into a hurricane glass filled with ice. Garnish with a pineapple wedge and a cherry.",
+        "ingredients": [
+            {"ingredient": "White rum", "quantity": "1 oz"},
+            {"ingredient": "Blue curaçao", "quantity": "1 oz"},
+            {"ingredient": "Pineapple juice", "quantity": "2 oz"},
+            {"ingredient": "Cream of coconut", "quantity": "1 oz"}
+        ]
+    },
+    {
+        "name": "Bushwacker",
+        "instructions": "Blend everything with a cup of ice until smooth. Pour into a hurricane glass and grate nutmeg on top.",
+        "ingredients": [
+            {"ingredient": "Dark rum", "quantity": "1 oz"},
+            {"ingredient": "Coffee liqueur", "quantity": "1 oz"},
+            {"ingredient": "Crème de cacao", "quantity": "1 oz"},
+            {"ingredient": "Cream of coconut", "quantity": "2 oz"},
+            {"ingredient": "Milk", "quantity": "2 oz"}
+        ]
+    },
+    {
+        "name": "Batanga",
+        "instructions": "Salt the rim of a highball glass and fill it with ice. Add the tequila and lime juice, top with cola and stir with a knife.",
+        "ingredients": [
+            {"ingredient": "Blanco tequila", "quantity": "2 oz"},
+            {"ingredient": "Lime juice", "quantity": "1/2 oz"},
+            {"ingredient": "Cola", "quantity": "4 oz"},
+            {"ingredient": "Salt", "quantity": "pinch"}
+        ]
+    },
+    {
+        "name": "Cantarito",
+        "instructions": "Salt the rim of a clay cup or tall glass and fill it with ice. Add the tequila, juices and a pinch of salt, top with grapefruit soda and stir.",
+        "ingredients": [
+            {"ingredient": "Blanco tequila", "quantity": "2 oz"},
+            {"ingredient": "Orange juice", "quantity": "1 oz"},
+            {"ingredient": "Grapefruit juice", "quantity": "1/2 oz"},
+            {"ingredient": "Lime juice", "quantity": "1/2 oz"},
+            {"ingredient": "Grapefruit soda", "quantity": "3 oz"},
+            {"ingredient": "Salt", "quantity": "pinch"}
+        ]
+    },
+    {
+        "name": "Madras",
+        "instructions": "Build in an ice-filled highball glass and stir. Garnish with a lime wedge.",
+        "ingredients": [
+            {"ingredient": "Vodka", "quantity": "1 1/2 oz"},
+            {"ingredient": "Cranberry juice", "quantity": "3 oz"},
+            {"ingredient": "Orange juice", "quantity": "1 oz"}
+        ]
+    },
+    {
+        "name": "Lynchburg Lemonade",
+        "instructions": "Shake the whiskey, triple sec, lemon juice and syrup with ice. Strain into an ice-filled highball glass, top with lemon-lime soda and garnish with a lemon slice.",
+        "ingredients": [
+            {"ingredient": "Tennessee whiskey", "quantity": "1 oz"},
+            {"ingredient": "Triple sec", "quantity": "1 oz"},
+            {"ingredient": "Lemon juice", "quantity": "3/4 oz"},
+            {"ingredient": "Simple syrup", "quantity": "1/2 oz"},
+            {"ingredient": "Lemon-lime soda", "quantity": "4 oz"}
+        ]
+    },
+    {
+        "name": "Cuban Manhattan",
+        "instructions": "Stir with ice and strain into a chilled coupe. Garnish with a cherry.",
+        "ingredients": [
+            {"ingredient": "Aged rum", "quantity": "2 oz"},
+            {"ingredient": "Sweet Vermouth", "quantity": "1 oz"},
+            {"ingredient": "Angostura bitters", "quantity": "2 dashes"}
+        ]
+    },
+    {
+        "name": "Bourbon Smash",
+        "instructions": "Muddle the lemon wedges and mint with the syrup in a shaker. Add the bourbon, shake with ice and double strain into a rocks glass over crushed ice. Garnish with a mint sprig.",
+        "ingredients": [
+            {"ingredient": "Bourbon", "quantity": "2 oz"},
+            {"ingredient": "Simple syrup", "quantity": "3/4 oz"},
+            {"ingredient": "Lemon", "quantity": "3 wedges"},
+            {"ingredient": "Mint", "quantity": "8 leaves"}
+        ]
+    },
+    {
+        "name": "Whiskey Smash",
+        "instructions": "Muddle the lemon and mint with the syrup in a shaker. Add the whiskey, shake with ice and strain into a rocks glass over crushed ice. Garnish with a mint sprig.",
+        "ingredients": [
+            {"ingredient": "Bourbon", "quantity": "2 oz"},
+            {"ingredient": "Simple syrup", "quantity": "3/4 oz"},
+            {"ingredient": "Lemon", "quantity": "1/2"},
+            {"ingredient": "Mint", "quantity": "6 leaves"}
+        ]
+    },
+    {
+        "name": "Ranch Water",
+        "instructions": "Fill a highball glass with ice, add the tequila and lime juice, and top with sparkling mineral water. Garnish with a lime wedge.",
+        "ingredients": [
+            {"ingredient": "Blanco tequila", "quantity": "2 oz"},
+            {"ingredient": "Lime juice", "quantity": "1/2 oz"},
+            {"ingredient": "Sparkling mineral water", "quantity": "4 oz"}
+        ]
+    },
+    {
+        "name": "Mind Eraser",
+        "instructions": "Fill a rocks glass with ice. Pour in the coffee liqueur, then layer the vodka on top, then the soda water. Drink quickly through a straw.",
+        "ingredients": [
+            {"ingredient": "Coffee liqueur", "quantity": "1 oz"},
+            {"ingredient": "Vodka", "quantity": "1 oz"},
+            {"ingredient": "Soda water", "quantity": "2 oz"}
+        ]
+    },
+    {
+        "name": "Earthquake",
+        "instructions": "Stir with ice and strain into a chilled coupe. Strong, so sip slowly.",
+        "ingredients": [
+            {"ingredient": "Gin", "quantity": "1 oz"},
+            {"ingredient": "Whiskey", "quantity": "1 oz"},
+            {"ingredient": "Absinthe", "quantity": "1 oz"}
+        ]
+    }
+]
