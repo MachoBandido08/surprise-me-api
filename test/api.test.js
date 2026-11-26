@@ -155,3 +155,27 @@ test('search: plain gin is not credited for sloe gin', async () => {
     const blackthorn = body.find((d) => d.name === 'Blackthorn');
     assert.equal(blackthorn, undefined);
 });
+
+const byName = async (name) => {
+    const res = await fetch(`${base}/recipes?name=${encodeURIComponent(name)}`);
+    return {status: res.status, body: await res.json()};
+};
+
+test('recipes: rejects an empty name', async () => {
+    const {status, body} = await byName('  ');
+    assert.equal(status, 400);
+    assert.match(body.error, /drink name/);
+});
+
+test('recipes: finds a drink by part of its name, exact match first', async () => {
+    const {status, body} = await byName('MARGARITA');
+    assert.equal(status, 200);
+    assert.equal(body[0].name.toLowerCase(), 'margarita');
+    assert.ok(body.every((d) => /margarita/i.test(d.name)));
+    assert.ok(body[0].ingredients.length > 0);
+});
+
+test('recipes: % and _ are matched literally, not as wildcards', async () => {
+    const {body} = await byName('%');
+    assert.deepEqual(body, []);
+});

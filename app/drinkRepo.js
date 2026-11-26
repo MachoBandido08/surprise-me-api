@@ -29,3 +29,14 @@ export async function findDrinksWithAnyIngredient(terms) {
     const rows = await dbAll(sql, params);
     return regroupIngredientsToDrinkJSON(rows);
 }
+
+// Drinks whose name contains the given text (case-insensitive). % and _ in the
+// user's text are escaped so they match literally instead of acting as wildcards.
+export async function findDrinksByName(text) {
+    const pattern = '%' + text.replace(/[!%_]/g, (c) => '!' + c) + '%';
+    const sql =
+        'select * from Drink D join Drink_Ingredient DI on D.id = DI.drink_id ' +
+        "where D.name like ? escape '!' order by D.id";
+    const rows = await dbAll(sql, [pattern]);
+    return regroupIngredientsToDrinkJSON(rows);
+}
