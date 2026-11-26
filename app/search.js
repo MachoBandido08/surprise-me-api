@@ -69,3 +69,25 @@ export function rankDrinks(drinks, ingredients, options = config.search) {
 
     return [...makeable, ...partial];
 }
+
+// Returns an error message, or null when the name query is acceptable.
+export function validateName(name, limits = config.search) {
+    if (!name) return 'Provide a drink name.';
+    if (name.length > limits.maxIngredientLength) {
+        return `Name is too long (max ${limits.maxIngredientLength} characters).`;
+    }
+    return null;
+}
+
+// Exact name first, then names starting with the text, then the rest; A-Z
+// within each group.
+export function rankByName(drinks, name, max = config.search.maxPartial) {
+    const query = name.toLowerCase();
+    const rank = (d) => {
+        const n = d.name.toLowerCase();
+        return n === query ? 0 : n.startsWith(query) ? 1 : 2;
+    };
+    return dedupeDrinks(drinks)
+        .sort((a, b) => rank(a) - rank(b) || a.name.localeCompare(b.name))
+        .slice(0, max);
+}

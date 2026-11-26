@@ -3,9 +3,11 @@ import assert from 'node:assert/strict';
 import {
     dedupeDrinks,
     parseIngredients,
+    rankByName,
     rankDrinks,
     scoreDrink,
     validateIngredients,
+    validateName,
 } from '../app/search.js';
 import {makeOwnsMatcher} from '../app/matching.js';
 
@@ -93,4 +95,21 @@ test('rankDrinks: respects maxMissing and maxPartial', () => {
 
 test('rankDrinks: empty input gives an empty list', () => {
     assert.deepEqual(rankDrinks([], ['gin']), []);
+});
+
+test('validateName: rejects empty and too long names', () => {
+    assert.match(validateName('', limits), /drink name/);
+    assert.match(validateName('a'.repeat(11), limits), /too long/);
+    assert.equal(validateName('gimlet', limits), null);
+});
+
+test('rankByName: exact, then starts-with, then contains (A-Z)', () => {
+    const result = rankByName(
+        [drink('Spicy Margarita'), drink('Margarita Royale'), drink('Margarita')],
+        'margarita',
+    );
+    assert.deepEqual(
+        result.map((d) => d.name),
+        ['Margarita', 'Margarita Royale', 'Spicy Margarita'],
+    );
 });
